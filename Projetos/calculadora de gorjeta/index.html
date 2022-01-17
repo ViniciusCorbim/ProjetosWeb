@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <header>
+    <img src="images/logo.svg" alt="Logo" class="logo">
+  </header>
+
+  <main>
+    <div class="inforDados">
+      <p class="inforDados">Bill</p>
+      <div class="containerIcon containerDollar">
+        <img src="images/icon-dollar.svg" alt="Icon Dollar" class="iconDollar">
+        <input type="number" placeholder="0" id="conta" name="conta">
+      </div>
+
+      <p class="inforDados selectPorce">Select Tip %</p>
+      <div class="escolherPorc">
+        <button id="btn5">5%</button>
+        <button id="btn10">10%</button>
+        <button id="btn15">15%</button>
+        <button id="btn25">25%</button>
+        <button id="btn50">50%</button>
+        <input type="number" name="porcentagem" id="porcentagemCustom" placeholder="Custom" name='porcentagemCustom'>
+      </div>
+
+      
+      <div class="pAviso">
+        <p class="inforDados">Number of People</p>
+        <span id="aviso"></span>
+      </div>
+      <div class="containerIcon">
+        <input type="number" placeholder="1" id="peoples" name="peoples">
+        <img src="images/icon-person.svg" alt="Icon Person" class="iconPerson">
+      </div>
+    </div>
+
+    <div class="resultado">
+
+      <div class="dados">
+        <div class="containerDados">
+            <p>Tip Amount <span>/ person</span></p>
+          <span class="resulAmont">$0.00</span>
+        </div>
+        
+        <div  class="containerDados">
+            <p>Total <span>/ person</span></p>
+          <span class="resulTotal">$0.00</span>
+        </div> 
+      </div>
+
+      <button id="btnResete">Reset</button>
+    </div>
+  </main>
+  
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"><strong>Frontend Mento</strong>r</a>. 
+    Coded by <a href="#"><strong>Your Name Here</strong></a>.
+  </footer>
+
+  <script src="scripts/script.js"></script>
+</body>
+</html>]

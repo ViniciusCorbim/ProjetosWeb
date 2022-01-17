@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;800;900&display=swap');
+/* font-family: 'Red Hat Display', sans-serif; */
+
+:root{
+    /*  Color Primary */
+    --primaryColor1: hsl(225, 93%, 62%); /* Pale blue  */
+    --primaryColor2: hsl(245, 75%, 52%); /* Bright blue */
+
+    /*  Color Neutral */
+    --neutralColor1: hsl(225, 100%, 98%); /* Very pale blue */
+    --neutralColor2: hsl(224, 23%, 55%); /* Desaturated blue */
+    --neutralColor3: hsl(223, 47%, 23%); /* Dark blue */
+}
+
+*{ 
+margin: 0; padding: 0; border: 0; box-sizing: border-box;
+}
+html{
+    overflow-x: hidden;
+}
+body{
+    font-family: 'Red Hat Display', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+    justify-content: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-image: url(../images/patternBackgroundDesktop.svg);
+    background-repeat: repeat-x;
+    background-color: hsl(225, 100%, 94%);
+    overflow-x: hidden;
+}
+section{
+    width: 400px;
+    background-color: white;
+    margin-top: 42px;
+    border-radius: 0 0 20px 20px;
+}
+img.illustrationImage{
+    width: 100%;
+    display: block;
+    margin: auto;
+    border-radius: 20px 20px 0 0;
+    margin-top: -17px;
+}
+div.containerSummary{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: space-between;
+    margin: 35px auto 17.5px;
+    width: 300px;
+}
+h1{
+    color: var(--neutralColor3);
+    font-weight: 900;
+}
+p{
+    color: var(--neutralColor2);
+}
+div.containerPlan{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    width: 330px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background-color: var(--neutralColor1);
+    border-radius: 10px;
+}
+div.imageMusicPlan{
+    display: flex;
+    gap: 20px;
+}
+div.spansPlan{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+span.plan{
+    color: var(--neutralColor3);
+    font-weight: 900;
+}
+span.planYear{
+    color: var(--neutralColor2);
+    font-weight: 700;
+}
+a.change{
+    color: var(--primaryColor2);
+    font-weight: 900;
+}
+a.change:hover{
+    color: #8C83D9;
+    text-decoration: none;
+}
+div.containerButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+button.payment{
+    background-color: var(--primaryColor2);
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    width: 330px;
+    padding: 17px;
+    border-radius: 15px;
+    box-shadow: 0px 15px 19px 0px rgba(56, 41, 224, 0.19);
+}
+button.payment:hover{
+    cursor: pointer;
+    background-color: hsl(245, 83%, 68%);
+    box-shadow: 0px 15px 19px 0px hsl(245deg 83% 68% / 19%);
+}
+button.cancel{
+    border: none;
+    background-color: white;
+    color: hsla(223, 47%, 23%, 0.589);
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+button.cancel:hover{
+    color: hsl(223, 47%, 23%);
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.attribution { 
+    font-size: 16px; text-align: center;
+    margin-bottom: 15px;
+    min-width: 100vw;
+    padding: 10px;
+}
+.attribution a { color: hsl(228, 45%, 44%); }
+
+
+@media(max-width: 768px){
+    body{
+        background-image: url(../images/patternBackgroundMobile.svg);
+        background-repeat: repeat-x;
+    }
+}
+@media(max-width: 440px){
+    section{
+        width: 300px;
+        background-color: white;
+        margin-top: 42px;
+        border-radius: 0 0 20px 20px;
+    }
+    div.containerSummary{
+        width: 230px;
+    }
+    div.containerPlan{
+        width: 230px;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    div.containerButtons{
+        gap: 25px;
+    }
+    button.payment{
+        width: 230px;
+    }
+}
+@media(max-width: 340px){
+    section{
+        width: 250px;
+        background-color: white;
+        margin-top: 42px;
+        border-radius: 0 0 20px 20px;
+    }
+    div.containerSummary{
+        width: 200px;
+    }
+    div.containerPlan{
+        width: 180px;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    div.imageMusicPlan{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    img.iconMusic{
+        width: 70px;
+    }
+    div.spansPlan{
+        gap: 5px;
+    }
+    div.containerButtons{
+        gap: 25px;
+    }
+    button.payment{
+        width: 180px;
+    }
+}

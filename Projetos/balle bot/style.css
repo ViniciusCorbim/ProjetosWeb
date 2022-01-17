@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarala:wght@400;700&display=swap');
+:root{
+    --font1: 'Righteous', sans-serif;
+    --font2: 'Sarala', sans-serif;
+
+    --cor1: #FFF2E7;
+    --cor2: #ECD6C4;
+    --cor3: #8E5D52;
+    --cor4: #302426;
+    --cor5: #2F2325;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body{
+    background-image: linear-gradient(68.15deg, #2F2325 16.62%, #8E5D52 85.61%);
+    overflow-x: hidden;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header.page-one{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+    padding: 0 5px 0;
+    margin-bottom: 10px;
+}
+img.header{
+    padding-right: 5px;
+}
+nav.header{
+    display: flex;
+    gap: 32px;
+}
+nav a.header{
+    font-family: var(--font2);
+    font-weight: normal;
+    font-size: 18px;
+    color: var(--cor1);
+    padding: 5px;
+    border-radius: 10px;
+    transition-duration: 0.5s;
+}
+nav a.header:hover{
+    background-color: var(--cor1);
+    color: var(--cor5);
+}
+
+main.main-principal{
+    border-top: 0.4px solid var(--cor1);
+}
+section.main-principal{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+div.main-principal{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+}
+h1.main-principal{
+    font-family: var(--font1);
+    font-weight: normal;
+    font-size: 64px;
+    color: var(--cor1);
+}
+h2.main-principal{
+    font-family: var(--font2);
+    font-weight: normal;
+    font-size: 24px;
+    color: var(--cor2);
+}
+button.main-principal{
+    font-family: var(--font2);
+    font-weight: normal;
+    font-size: 24px;
+    color: var(--cor5);
+    background-color: var(--cor2);
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+}
+button.main-principal:hover{
+    background-color: #b3a295;
+}
+
+img.main-principal{
+    width: 30%;
+    min-width: 200px;
+}
+
+section.main-secundario{
+    margin: 48px 0px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+h3.main-secundario{
+    font-family: var(--font1), sans-serif;
+    font-weight: normal;
+    font-size: 24px;
+    color: var(--cor1);
+    border-top: 0.4px solid var(--cor1);
+    padding-top: 48px;
+    margin-bottom: 16px;
+}
+p.main-secundario{
+    font-family: var(--font2);
+    font-weight: normal;
+    font-size: 18px;
+    color: var(--cor2);
+}
+footer{
+    border-top: 0.4px solid var(--cor1);
+    padding: 32px;
+}
+img.footer{
+    display: block;
+    margin: auto;
+    max-height: 48px;
+}
+
+
+@media (max-width: 763px){
+    div.main-principal{
+        text-align: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+    h2.main-principal{
+        font-size: 18px;
+    }
+}
+@media (max-width: 690px){
+    nav.header{
+        gap: 16px;
+        align-items: center;
+    }
+}
+@media (max-width: 670px){
+    section.main-principal{
+        flex-direction: column;
+        gap: 20px;
+    }
+    h2.main-principal{
+        font-size: 24px;
+    }
+}
+@media (max-width: 610px){
+    nav a.header{
+        font-size: 16px;
+    }
+}
+@media (max-width: 545px){
+    nav.header{
+        display: flex;
+        gap: 10px;
+        text-align: center;
+    }
+    h2.main-principal{
+        font-size: 20px;
+    }
+}
+@media (max-width: 410px){
+    header.page-one{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 35px 0 45px;
+    }
+    img.header{
+        padding: 0;
+    }
+    nav.header{
+        display: flex;
+        gap: 10px;
+        justify-content: space-evenly;
+        padding: 0 5px 0;
+    }
+}
+@media(max-width: 370px){
+    body{
+        background-image: none;
+        background-color: hsl(11, 26%, 33%);
+    }
+    header.page-one{
+        width: 100vw;
+        height: auto;
+        margin: 20px 0 20px;
+    }
+    nav.header{
+        width: 100vw;
+    }
+}
+@media(max-width: 350px){
+    nav.header{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    nav a.header{
+        font-size: 19px;
+        padding-right: 10px;
+    }
+    footer{
+        padding: 32px 0 32px;
+    }
+    img.footer{
+        max-height: 48px;
+    }
+}
+@media(max-width: 250px){
+    img.footer{
+        width: 90%;
+    }
+}
