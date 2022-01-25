@@ -84,3 +84,20 @@ footer{
     text-align: center;
     color: white;
 }
+
+@media(max-width: 750px){
+    section{
+        font-size: 1.075em;
+    }
+    section.imagem p{
+        width: 230px;
+    }
+}
+@media (max-width: 360px) {
+    section{
+        font-size: 1em;
+    }
+    section.imagem p{
+        width: 200px;
+    }
+}
