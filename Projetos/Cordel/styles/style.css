@@ -91,6 +91,7 @@ footer{
     }
     section.imagem p{
         width: 230px;
+        background-color:rgba(0, 0, 0, 0.644);
     }
 }
 @media (max-width: 360px) {
