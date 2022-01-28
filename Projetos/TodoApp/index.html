@@ -7,30 +7,42 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
   <title>Frontend Mentor | Todo app</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
+  <main>
+    <div class="containerBackgroundImage">
+      <div class="title">
+        <h1>Todo</h1>
+        <img src="images/icon-sun.svg" alt="Icon-Sun" id="IconMode">
+      </div>
+    </div>
 
-  Todo
+    <section>
+      <div class="createTodo">
+        <div class="circle"></div>
+        <input type="text" placeholder="Create a new todo..." id="newTodo">
+      </div>
 
-  <!-- Add dynamic number --> items left
+      <div class="containerTodo">
 
-  All
-  Active 
-  Completed
+        <div class="t3fs">
+          <p><span id="numberItensLeft"><!-- Add dynamic number --></span> items left</p>
+          <div class="menu">
+            <span>All</span>
+            <span>Active</span>
+            <span>Completed</span>
+          </div>
+          <p>Clear Completed</p>
+        </div>
+      </div>
+    </section>
+    <p>Drag and drop to reorder list</p>
 
-  Clear Completed
-
-  Drag and drop to reorder list
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
+  </main>
 </body>
 </html>

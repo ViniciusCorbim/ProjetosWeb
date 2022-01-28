@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+:root{
+    /*-----Fonts-----*/
+    --fontOne: 'Josefin Sans', sans-serif;
+
+    /*-----Primary-Colors-----*/
+    --primaryColor1: hsl(220, 98%, 61%); /*Bright Blue*/
+    --backgroundColor: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%));
+
+    /*----------------Dark-Theme----------------*/
+    --colorDark1: hsl(235, 21%, 11%); /* Very Dark Blue */
+    --colorDark2: hsl(235, 24%, 19%); /* Very Dark Desaturated Blue */
+    --colorDark3: hsl(234, 39%, 85%); /* Light Grayish Blue */
+    --colorDark5: hsl(236, 33%, 92%); /* Light Grayish Blue (hover) */
+    --colorDark6: hsl(234, 11%, 52%); /* Dark Grayish Blue */
+    --colorDark7: hsl(233, 14%, 35%); /* Very Dark Grayish Blue */
+    --colorDark8: hsl(237, 14%, 26%); /* Very Dark Grayish Blue */
+
+    /*---------------Light-Theme---------------*/
+    --colorLight1: hsl(0, 0%, 98%);    /* Very Light Gray */
+    --colorLight2: hsl(236, 33%, 92%); /* Very Light Grayish Blue */
+    --colorLight3: hsl(233, 11%, 84%); /* Light Grayish Blue */
+    --colorLight4: hsl(236, 9%, 61%);  /* Dark Grayish Blue */
+    --colorLight5: hsl(235, 19%, 35%); /* Very Dark Grayish Blue */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fontOne);
+}
+body{
+    background-image: url(../images/bg-desktop-dark.jpg);
+    background-repeat: no-repeat;
+    background-color: var(--colorDark1);
+    min-height: 100vh;
+    font-size: 18px;
+}
+main{
+    margin: 60px auto 0;
+    width: 500px;
+}
+div.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3em;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+div.circle{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--colorDark8);
+}
+input#newTodo{
+    background-color: transparent;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    color: var(--colorDark5);
+    width: 85%;
+}
+input#newTodo::placeholder{
+    font-size: 20px;
+    color: var(--colorDark6);
+    opacity: 0.9;
+}
+div.createTodo{
+    margin-bottom: 22px;
+    display: flex;
+    gap: 25px;
+}
+div.createTodo, div.containerTodo{
+    padding: 18px 25px 18px;
+    background-color: var(--colorDark2);
+    border-radius: 7px;
+}
+
+div.t3fs{
+    display: flex;
+    justify-content: space-around;
+}
+div.menu{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
