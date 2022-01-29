@@ -39,7 +39,7 @@ body{
 }
 main{
     margin: 60px auto 0;
-    width: 500px;
+    width: 550px;
 }
 div.title{
     display: flex;
@@ -49,6 +49,9 @@ div.title{
     color: white;
     text-transform: uppercase;
     margin-bottom: 35px;
+}
+img#IconMode{
+    cursor: pointer;
 }
 div.circle{
     width: 35px;
@@ -71,23 +74,58 @@ input#newTodo::placeholder{
 }
 div.createTodo{
     margin-bottom: 22px;
+}
+div.createTodo, div.DivTodoItem{
+    padding: 18px 25px 18px;
     display: flex;
     gap: 25px;
 }
-div.createTodo, div.containerTodo{
-    padding: 18px 25px 18px;
+div.createTodo, div#container{
     background-color: var(--colorDark2);
     border-radius: 7px;
 }
 
+div.DivTodoItem{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    color: var(--colorDark3);
+    border-bottom: 1px solid var(--colorDark8);
+}
+div.circle.TodoItem{
+    cursor: pointer;
+}
+div.circle.TodoItem:hover{
+    background-image: url(../images/icon-check.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.5;
+}
+
 div.t3fs{
+    padding: 18px 0 18px;
+    font-size: 16px;
     display: flex;
     justify-content: space-around;
+    color: var(--colorDark6);
+    font-weight: 700;
+}
+div.t3fs p{
+    color: var(--colorDark7);
 }
 div.menu{
     display: flex;
     justify-content: space-between;
     gap: 20px;
+}
+div.menu span:hover{
+    color: var(--primaryColor1);
+    cursor: pointer;
+}
+p.psoe{
+    margin-top: 100px;
+    text-align: center;
+    color: var(--colorLight5);
 }
 
 .attribution { font-size: 11px; text-align: center; }

@@ -24,25 +24,32 @@
         <input type="text" placeholder="Create a new todo..." id="newTodo">
       </div>
 
-      <div class="containerTodo">
-
-        <div class="t3fs">
-          <p><span id="numberItensLeft"><!-- Add dynamic number --></span> items left</p>
-          <div class="menu">
-            <span>All</span>
-            <span>Active</span>
-            <span>Completed</span>
+      <div id="container">
+        <div id="containerTodo">
+          <div class="DivTodoItem">
+            <div class="circle TodoItem"></div>
+            <p class="TodoItem">Todo Item</p>
           </div>
-          <p>Clear Completed</p>
-        </div>
+          </div>
+          <div class="t3fs">
+            <p id="PNumberItensLeft"><span id="numberItensLeft"><!-- Add dynamic number --></span> items left</p>
+            <div class="menu">
+              <span>All</span>
+              <span>Active</span>
+              <span>Completed</span>
+            </div>
+            <p id="clearComplete">Clear Completed</p>
+          </div>
       </div>
     </section>
-    <p>Drag and drop to reorder list</p>
+    <p class="psoe">Drag and drop to reorder list</p>
 
     <div class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
       Coded by <a href="#">Your Name Here</a>.
     </div>
   </main>
+
+  <script src="scripts/script.js"></script>
 </body>
 </html>
