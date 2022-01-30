@@ -1,6 +1,12 @@
 let mode = document.getElementById('IconMode');
 let inputNewTodo = document.getElementById('newTodo');
 
+let spanAll = document.getElementById('spanAll');
+let spanActive = document.getElementById('spanActive');
+let spanCompleted = document.getElementById('spanCompleted');
+let clearComplete = document.getElementById('clearComplete');
+let visible = 0;
+
 mode.addEventListener('click', ChangeMode);
 function ChangeMode(){
     alert('Modo Mudado com Sucesso!');
@@ -43,6 +49,15 @@ inputNewTodo.addEventListener('keypress', function(e){
 
     inputNewTodo.value = '';
     countActivesTodo ();
+
+    switch(visible){
+        case 0: allVisible ();
+            break;
+        case 1: activeVisible ();
+            break;
+        case 2: completedVisible ();
+            break;
+    }
 });
 
 function markTodo() {
@@ -53,6 +68,13 @@ function markTodo() {
         children[i].addEventListener('click', markOffTodo);
     }
     countActivesTodo ();
+
+    switch(visible){
+        case 1: activeVisible ();
+            break;
+        case 2: completedVisible ();
+            break;
+    }
     /*this.setAttribute('class', 'circle TodoItem completed');
     this.removeEventListener('click',markTodo);
     this.addEventListener('click', markOffTodo);*/
@@ -66,6 +88,13 @@ function markOffTodo () {
         children[i].addEventListener('click', markTodo);
     }
     countActivesTodo ();
+
+    switch(visible){
+        case 1: activeVisible ();
+            break;
+        case 2: completedVisible ();
+            break;
+    }
     /*
     this.setAttribute('class', 'circle TodoItem active');
     this.removeEventListener('click',markOffTodo);
@@ -77,4 +106,70 @@ function countActivesTodo (){
     let ActivesTodo = document.querySelectorAll('div.DivTodoItem.active');
     let numberItensLeft = document.getElementById('numberItensLeft');
     numberItensLeft.innerHTML = ActivesTodo.length;
+}
+
+
+spanAll.addEventListener('click', allVisible);
+function allVisible () {
+    visible = 0;
+    spanAll.setAttribute('class', 'spanActiveVisible');
+    spanActive.removeAttribute('class');
+    spanCompleted.removeAttribute('class');
+
+    let onlyActiveTodoVisible = document.querySelectorAll('div.DivTodoItem.completed');
+    for(let i = 0; i < onlyActiveTodoVisible.length; i++){
+        onlyActiveTodoVisible[i].setAttribute('class', 'DivTodoItem completed');
+    }
+
+    let onlyCompletedTodoVisible = document.querySelectorAll('div.DivTodoItem.active');
+    for(let i = 0; i < onlyCompletedTodoVisible.length; i++){
+        onlyCompletedTodoVisible[i].setAttribute('class', 'DivTodoItem active');
+    }
+}
+
+spanActive.addEventListener('click', activeVisible);
+function activeVisible () {
+    visible = 1;
+    spanAll.removeAttribute('class');
+    spanActive.setAttribute('class', 'spanActiveVisible');
+    spanCompleted.removeAttribute('class');
+
+    let onlyActiveTodoVisible = document.querySelectorAll('div.DivTodoItem.completed');
+    for(let i = 0; i < onlyActiveTodoVisible.length; i++){
+        onlyActiveTodoVisible[i].setAttribute('class', 'DivTodoItem completed notVisible');
+    }
+
+    let onlyCompletedTodoVisible = document.querySelectorAll('div.DivTodoItem.active');
+    for(let i = 0; i < onlyCompletedTodoVisible.length; i++){
+        onlyCompletedTodoVisible[i].setAttribute('class', 'DivTodoItem active');
+    }
+}
+
+spanCompleted.addEventListener('click', completedVisible);
+function completedVisible () {
+    visible = 2;
+    spanAll.removeAttribute('class');
+    spanActive.removeAttribute('class');
+    spanCompleted.setAttribute('class', 'spanActiveVisible');
+
+    let onlyActiveTodoVisible = document.querySelectorAll('div.DivTodoItem.completed');
+    for(let i = 0; i < onlyActiveTodoVisible.length; i++){
+        onlyActiveTodoVisible[i].setAttribute('class', 'DivTodoItem completed');
+    }
+
+    let onlyCompletedTodoVisible = document.querySelectorAll('div.DivTodoItem.active');
+    for(let i = 0; i < onlyCompletedTodoVisible.length; i++){
+        onlyCompletedTodoVisible[i].setAttribute('class', 'DivTodoItem active notVisible');
+    }
+}
+
+
+clearComplete.addEventListener('click', ClearCompleteTodo);
+function ClearCompleteTodo () {
+    let ActiveTodo = document.querySelectorAll('div.DivTodoItem.completed');
+    const DivContainerTodos = document.getElementById('containerTodo');
+
+    for(let i = 0; i < ActiveTodo.length; i++){
+        DivContainerTodos.removeChild(ActiveTodo[i]);
+    }
 }

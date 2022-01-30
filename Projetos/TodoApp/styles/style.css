@@ -54,8 +54,8 @@ img#IconMode{
     cursor: pointer;
 }
 div.circle{
-    width: 35px;
-    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
     border-radius: 50%;
     border: 2px solid var(--colorDark8);
 }
@@ -88,13 +88,17 @@ div.createTodo, div#container{
 div.DivTodoItem{
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 26px;
     color: var(--colorDark3);
     border-bottom: 1px solid var(--colorDark8);
 }
 
 div.circle.TodoItem, div.DivTodoItem p.TodoItem{
     cursor: pointer;
+}
+p.TodoItem{
+    overflow: hidden;
+    line-height: 1.5em;
 }
 div.DivTodoItem.active > div.circle.TodoItem:hover{
     opacity: 0.5;
@@ -129,8 +133,21 @@ div.menu{
     justify-content: space-between;
     gap: 20px;
 }
+.spanActiveVisible{
+    color: var(--primaryColor1) !important;
+    font-weight: 400  !important;
+}
+
+div.notVisible{
+    display: none;
+}
+
 div.menu span:hover{
-    color: var(--primaryColor1);
+    color: var(--colorDark5);
+    cursor: pointer;
+}
+p#clearComplete:hover{
+    color: var(--colorDark3);
     cursor: pointer;
 }
 p.psoe{
