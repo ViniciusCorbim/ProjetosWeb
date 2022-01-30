@@ -92,14 +92,25 @@ div.DivTodoItem{
     color: var(--colorDark3);
     border-bottom: 1px solid var(--colorDark8);
 }
-div.circle.TodoItem{
+
+div.circle.TodoItem, div.DivTodoItem p.TodoItem{
     cursor: pointer;
 }
-div.circle.TodoItem:hover{
+div.DivTodoItem.active > div.circle.TodoItem:hover{
+    opacity: 0.5;
     background-image: url(../images/icon-check.svg);
     background-repeat: no-repeat;
     background-position: center center;
-    opacity: 0.5;
+}
+div.DivTodoItem.completed > div.circle.TodoItem{
+    background-image: url(../images/icon-check.svg), linear-gradient(120deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: none;
+}
+div.DivTodoItem.completed > p.TodoItem{
+    color: var(--colorDark7);
+    text-decoration: line-through;
 }
 
 div.t3fs{

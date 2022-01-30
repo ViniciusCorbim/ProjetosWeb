@@ -22,10 +22,12 @@ inputNewTodo.addEventListener('keypress', function(e){
     let pTodo = document.createElement('p');
     const DivContainerTodos = document.getElementById('containerTodo');
 
-    DivTodo.setAttribute('class', 'DivTodoItem');
-    DivCircle.setAttribute('class', 'circle TodoItem');
+    DivTodo.setAttribute('class', 'DivTodoItem active');
+    DivCircle.setAttribute('class', 'circle TodoItem active');
+    DivCircle.addEventListener('click', markTodo);
     pTodo.setAttribute('class', 'TodoItem');
-    pTodo.innerHTML = inputNewTodo.value
+    pTodo.addEventListener('click', markTodo);
+    pTodo.innerHTML = inputNewTodo.value;
 
     let pTodoDocument = document.querySelectorAll('p.TodoItem');
     for(let i = 0; i < document.querySelectorAll('p.TodoItem').length; i++){
@@ -40,4 +42,39 @@ inputNewTodo.addEventListener('keypress', function(e){
     DivContainerTodos.appendChild(DivTodo);
 
     inputNewTodo.value = '';
+    countActivesTodo ();
 });
+
+function markTodo() {
+    let children = this.parentNode.children;
+    this.parentNode.setAttribute('class', 'DivTodoItem completed');
+    for(let i = 0; i < children.length; i++){
+        children[i].removeEventListener('click',markTodo);
+        children[i].addEventListener('click', markOffTodo);
+    }
+    countActivesTodo ();
+    /*this.setAttribute('class', 'circle TodoItem completed');
+    this.removeEventListener('click',markTodo);
+    this.addEventListener('click', markOffTodo);*/
+}
+
+function markOffTodo () {
+    let children = this.parentNode.children;
+    this.parentNode.setAttribute('class', 'DivTodoItem active');
+    for(let i = 0; i < children.length; i++){
+        children[i].removeEventListener('click',markOffTodo);
+        children[i].addEventListener('click', markTodo);
+    }
+    countActivesTodo ();
+    /*
+    this.setAttribute('class', 'circle TodoItem active');
+    this.removeEventListener('click',markOffTodo);
+    this.addEventListener('click', markTodo);
+    */
+}
+
+function countActivesTodo (){
+    let ActivesTodo = document.querySelectorAll('div.DivTodoItem.active');
+    let numberItensLeft = document.getElementById('numberItensLeft');
+    numberItensLeft.innerHTML = ActivesTodo.length;
+}
