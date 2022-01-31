@@ -6,12 +6,102 @@ let spanActive = document.getElementById('spanActive');
 let spanCompleted = document.getElementById('spanCompleted');
 let clearComplete = document.getElementById('clearComplete');
 let visible = 0;
+let modeVar = false;  // true - Modo Escuro   e   false - Modo Claro
+
+function loadBody () {
+    ChangeMode();
+    allVisible ();
+}
 
 mode.addEventListener('click', ChangeMode);
 function ChangeMode(){
-    alert('Modo Mudado com Sucesso!');
-    let pTodo = document.querySelectorAll('p.TodoItem');
-    console.log(pTodo);
+    modeVar = !modeVar;
+    const body = document.getElementsByTagName('body')[0];
+    const container = document.getElementById('container');
+    const divCreateTodo = document.getElementsByClassName('createTodo')[0];
+    let ActivesTodo = document.querySelectorAll('div.DivTodoItem.active');
+
+    if(modeVar){
+        DarkMode ()
+    }else{
+        LightMode ();
+    }
+}
+
+function DarkMode () {
+    const body = document.getElementsByTagName('body')[0];
+    const container = document.getElementById('container');
+    const divCreateTodo = document.getElementsByClassName('createTodo')[0];
+    let ActivesTodo = document.querySelectorAll('div.DivTodoItem.active');
+    let CompletedTodo = document.querySelectorAll('div.DivTodoItem.completed');
+    let Menu = document.getElementsByClassName('menu')[0];
+    let t3fs = document.getElementsByClassName('t3fs')[0];
+    let attribution = document.getElementsByClassName('attribution')[0];
+
+    body.classList.remove('lightMode');
+    container.classList.remove('lightMode');
+    divCreateTodo.classList.remove('lightMode');
+    inputNewTodo.classList.remove('lightMode');
+    Menu.classList.remove('lightMode');
+    t3fs.classList.remove('lightMode');
+    clearComplete.classList.remove('lightMode');
+    attribution.classList.remove('lightMode');
+
+    mode.src = 'images/icon-sun.svg';
+    body.classList.add('darkMode');
+    container.classList.add('darkMode');
+    divCreateTodo.classList.add('darkMode');
+    inputNewTodo.classList.add('darkMode');
+    t3fs.classList.add('darkMode');
+    clearComplete.classList.add('darkMode');
+    
+    for(let i=0; i < ActivesTodo.length; i++){
+        ActivesTodo[i].classList.add("darkMode");
+        ActivesTodo[i].classList.remove("lightMode");
+    }
+    for(let i=0; i < CompletedTodo.length; i++){
+        CompletedTodo[i].classList.add("darkMode");
+        CompletedTodo[i].classList.remove("lightMode")
+    }
+}
+function LightMode () {
+    const body = document.getElementsByTagName('body')[0];
+    const container = document.getElementById('container');
+    const divCreateTodo = document.getElementsByClassName('createTodo')[0];
+    let ActivesTodo = document.querySelectorAll('div.DivTodoItem.active');
+    let CompletedTodo = document.querySelectorAll('div.DivTodoItem.completed');
+    let Menu = document.getElementsByClassName('menu')[0];
+    let t3fs = document.getElementsByClassName('t3fs')[0];
+    let attribution = document.getElementsByClassName('attribution')[0];
+
+    body.classList.remove('darkMode');
+    container.classList.remove('darkMode');
+    divCreateTodo.classList.remove('darkMode');
+    inputNewTodo.classList.remove('darkMode');
+    t3fs.classList.remove('darkMode');
+    clearComplete.classList.remove('darkMode');
+
+    mode.src = 'images/icon-moon.svg';
+    body.classList.add('lightMode');
+    container.classList.add('lightMode');
+    divCreateTodo.classList.add('lightMode');
+    inputNewTodo.classList.add('lightMode');
+    Menu.classList.add('lightMode');
+    t3fs.classList.add('lightMode');
+    clearComplete.classList.add('lightMode');
+    attribution.classList.add('lightMode');
+
+    for(let i=0; i < ActivesTodo.length; i++){
+        ActivesTodo[i].classList.add("lightMode");
+        ActivesTodo[i].classList.remove("darkMode");
+        /*ActivesTodo[i].setAttribute('class', 'DivTodoItem active lightMode');*/
+    }
+    for(let i=0; i < CompletedTodo.length; i++){
+        CompletedTodo[i].classList.add("lightMode");
+        CompletedTodo[i].classList.remove("darkMode");
+        /*CompletedTodo[i].setAttribute('class', 'DivTodoItem completed lightMode');*/
+    }
+
 }
 
 inputNewTodo.addEventListener('keypress', function(e){
@@ -50,6 +140,12 @@ inputNewTodo.addEventListener('keypress', function(e){
     inputNewTodo.value = '';
     countActivesTodo ();
 
+    if(modeVar){
+        DarkMode ()
+    }else{
+        LightMode ();
+    }
+
     switch(visible){
         case 0: allVisible ();
             break;
@@ -69,7 +165,15 @@ function markTodo() {
     }
     countActivesTodo ();
 
+    if(modeVar){
+        DarkMode ()
+    }else{
+        LightMode ();
+    }
+
     switch(visible){
+        case 0: allVisible ();
+            break;
         case 1: activeVisible ();
             break;
         case 2: completedVisible ();
@@ -89,7 +193,15 @@ function markOffTodo () {
     }
     countActivesTodo ();
 
+    if(modeVar){
+        DarkMode ()
+    }else{
+        LightMode ();
+    }
+
     switch(visible){
+        case 0: allVisible ();
+            break;
         case 1: activeVisible ();
             break;
         case 2: completedVisible ();
@@ -125,6 +237,12 @@ function allVisible () {
     for(let i = 0; i < onlyCompletedTodoVisible.length; i++){
         onlyCompletedTodoVisible[i].setAttribute('class', 'DivTodoItem active');
     }
+
+    if(modeVar){
+        DarkMode ()
+    }else{
+        LightMode ();
+    }
 }
 
 spanActive.addEventListener('click', activeVisible);
@@ -143,6 +261,12 @@ function activeVisible () {
     for(let i = 0; i < onlyCompletedTodoVisible.length; i++){
         onlyCompletedTodoVisible[i].setAttribute('class', 'DivTodoItem active');
     }
+
+    if(modeVar){
+        DarkMode ()
+    }else{
+        LightMode ();
+    }
 }
 
 spanCompleted.addEventListener('click', completedVisible);
@@ -160,6 +284,12 @@ function completedVisible () {
     let onlyCompletedTodoVisible = document.querySelectorAll('div.DivTodoItem.active');
     for(let i = 0; i < onlyCompletedTodoVisible.length; i++){
         onlyCompletedTodoVisible[i].setAttribute('class', 'DivTodoItem active notVisible');
+    }
+
+    if(modeVar){
+        DarkMode ()
+    }else{
+        LightMode ();
     }
 }
 

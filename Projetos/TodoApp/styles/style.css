@@ -19,7 +19,7 @@
     /*---------------Light-Theme---------------*/
     --colorLight1: hsl(0, 0%, 98%);    /* Very Light Gray */
     --colorLight2: hsl(236, 33%, 92%); /* Very Light Grayish Blue */
-    --colorLight3: hsl(233, 11%, 84%); /* Light Grayish Blue */
+    --colorLight3: #c2c3c5; /* Light Grayish Blue */
     --colorLight4: hsl(236, 9%, 61%);  /* Dark Grayish Blue */
     --colorLight5: hsl(235, 19%, 35%); /* Very Dark Grayish Blue */
 }
@@ -34,8 +34,16 @@ body{
     background-image: url(../images/bg-desktop-dark.jpg);
     background-repeat: no-repeat;
     background-color: var(--colorDark1);
-    min-height: 100vh;
-    font-size: 18px;
+}
+body.darkMode{
+    background-image: url(../images/bg-desktop-dark.jpg);
+    background-repeat: no-repeat;
+    background-color: var(--colorDark1);
+}
+body.lightMode{
+    background-image: url(../images/bg-desktop-light.jpg);
+    background-repeat: no-repeat;
+    background-color: var(--colorLight2);
 }
 main{
     margin: 60px auto 0;
@@ -67,14 +75,22 @@ input#newTodo{
     color: var(--colorDark4);
     width: 85%;
 }
+input#newTodo.darkMode{
+    color: var(--colorDark4);
+}
+input#newTodo.lightMode{
+    color: var(--colorLight5);
+}
 input#newTodo::placeholder{
     font-size: 20px;
     color: var(--colorDark5);
     opacity: 0.9;
 }
-div.createTodo{
-    margin-bottom: 22px;
-    box-shadow: 0px 20px 35px 10px hsl(0deg 0% 0% / 22%);
+input#newTodo.darkMode::placeholder{
+    color: var(--colorDark5);
+}
+input#newTodo.lightMode::placeholder{
+    color: var(--colorLight4);
 }
 div.createTodo, div.DivTodoItem{
     padding: 18px 25px 18px;
@@ -82,11 +98,34 @@ div.createTodo, div.DivTodoItem{
     gap: 25px;
 }
 div.createTodo, div#container{
-    background-color: var(--colorDark2);
     border-radius: 7px;
 }
-div#container{
+div.createTodo.lightMode,div#container.lightMode{
+    background-color: var(--colorLight1);
+}
+div.createTodo.darkMode,div#container.darkMode{
+    background-color: var(--colorDark2);
+}
+div.createTodo.darkMode div.circle{
+    border: 2px solid var(--colorDark7);
+}
+div.createTodo.lightMode div.circle{
+    border: 2px solid var(--colorLight3);
+}
+
+div.createTodo{
+    margin-bottom: 22px;
+    box-shadow: 0px 20px 35px 10px hsl(0deg 0% 0% / 22%);
+}
+div.createTodo.lightMode{
+    margin-bottom: 22px;
+    box-shadow: 0px 20px 35px 10px hsl(0deg 0% 0% / 10%);
+}
+div#container.darkMode{
     box-shadow: 0px 35px 31px 10px hsl(0deg 0% 0% / 33%), 0px 7px 11px 2px rgb(0 0 0 / 18%);
+}
+div#container.lightMode{
+    box-shadow: 0px 35px 31px 10px hsl(0deg 0% 0% / 10%), 0px 7px 11px 2px rgb(0 0 0 / 5%);
 }
 
 div.DivTodoItem{
@@ -95,6 +134,24 @@ div.DivTodoItem{
     gap: 26px;
     color: var(--colorDark3);
     border-bottom: 1px solid var(--colorDark7);
+}
+div.DivTodoItem.active.darkMode{
+    color: var(--colorDark3);
+    border-bottom: 1px solid var(--colorDark7);
+}
+div.DivTodoItem.active.lightMode{
+    color: var(--colorLight5);
+    border-bottom: 1px solid var(--colorLight3);
+    text-shadow: 0px 0px 0px rgb(0 0 0);
+}
+
+div.DivTodoItem.completed.darkMode{
+    color: var(--colorDark3);
+    border-bottom: 1px solid var(--colorDark7);
+}
+div.DivTodoItem.completed.lightMode{
+    color: var(--colorLight5);
+    border-bottom: 1px solid var(--colorLight3);
 }
 
 div.circle.TodoItem, div.DivTodoItem p.TodoItem{
@@ -105,20 +162,34 @@ p.TodoItem{
     line-height: 1.5em;
 }
 div.DivTodoItem.active > div.circle.TodoItem:hover{
-    opacity: 0.5;
-    background-image: url(../images/icon-check.svg);
-    background-repeat: no-repeat;
-    background-position: center center;
+    background: linear-gradient(var(--colorDark2), var(--colorDark2)) padding-box, linear-gradient(120deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1.85px;
+}
+div.DivTodoItem.active.darkMode > div.circle.TodoItem:hover{
+    background: linear-gradient(var(--colorDark2), var(--colorDark2)) padding-box, linear-gradient(120deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+}
+div.DivTodoItem.active.lightMode > div.circle.TodoItem:hover{
+    background: linear-gradient(var(--colorLight1), var(--colorLight1)) padding-box, linear-gradient(120deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
 }
 div.DivTodoItem.completed > div.circle.TodoItem{
     background-image: url(../images/icon-check.svg), linear-gradient(120deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%));
     background-repeat: no-repeat;
     background-position: center center;
-    border: none;
+    border: none !important;
 }
-div.DivTodoItem.completed > p.TodoItem{
+div.DivTodoItem.lightMode > div.circle.TodoItem{
+    border: 2px solid var(--colorLight3);
+}
+div.DivTodoItem.completed.darkMode > p.TodoItem{
     color: var(--colorDark6);
     text-decoration: line-through;
+}
+div.DivTodoItem.completed.lightMode > p.TodoItem{
+    color: var(--colorLight3);
+    text-decoration: line-through;
+    text-shadow: 0px 0px 0px rgb(0 0 0 / 66%);
 }
 
 div.t3fs{
@@ -128,9 +199,6 @@ div.t3fs{
     justify-content: space-around;
     color: var(--colorDark5);
     font-weight: 700;
-}
-div.t3fs p{
-    color: var(--colorDark6);
 }
 div.menu{
     display: flex;
@@ -150,9 +218,29 @@ div.menu span:hover{
     color: var(--colorDark4);
     cursor: pointer;
 }
-p#clearComplete:hover{
+div.menu.darkMode span:hover{
+    color: var(--colorDark4);
+    cursor: pointer;
+}
+div.menu.lightMode span:hover{
+    color: var(--colorLight5);
+    cursor: pointer;
+}
+
+p#clearComplete.darkMode:hover{
     color: var(--colorDark3);
     cursor: pointer;
+}
+p#clearComplete.lightMode:hover{
+    color: var(--colorLight5);
+    cursor: pointer;
+}
+div.t3fs.darkMode p{
+    color: var(--colorDark6);
+}
+div.t3fs.lightMode p{
+    color: var(--colorLight4);
+    text-shadow: 0px 0px 0px rgb(0 0 0 / 60%);
 }
 p.psoe{
     margin: 50px 0 50px;
@@ -160,8 +248,14 @@ p.psoe{
     color: var(--colorDark6);
 }
 
+
 .attribution { 
     font-size: 16px; text-align: center;
     color: var(--colorDark5);
+    margin-bottom: 50px;
+}
+.attribution.lightMode{
+    color: var(--colorLight5);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.212);
 }
 .attribution a { color: var(--primaryColor1); }
