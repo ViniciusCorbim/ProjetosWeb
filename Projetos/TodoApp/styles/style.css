@@ -11,10 +11,10 @@
     --colorDark1: hsl(235, 21%, 11%); /* Very Dark Blue */
     --colorDark2: hsl(235, 24%, 19%); /* Very Dark Desaturated Blue */
     --colorDark3: hsl(234, 39%, 85%); /* Light Grayish Blue */
-    --colorDark5: hsl(236, 33%, 92%); /* Light Grayish Blue (hover) */
-    --colorDark6: hsl(234, 11%, 52%); /* Dark Grayish Blue */
-    --colorDark7: hsl(233, 14%, 35%); /* Very Dark Grayish Blue */
-    --colorDark8: hsl(237, 14%, 26%); /* Very Dark Grayish Blue */
+    --colorDark4: hsl(236, 33%, 92%); /* Light Grayish Blue (hover) */
+    --colorDark5: hsl(234, 11%, 52%); /* Dark Grayish Blue */
+    --colorDark6: hsl(233, 14%, 35%); /* Very Dark Grayish Blue */
+    --colorDark7: hsl(237, 14%, 26%); /* Very Dark Grayish Blue */
 
     /*---------------Light-Theme---------------*/
     --colorLight1: hsl(0, 0%, 98%);    /* Very Light Gray */
@@ -57,23 +57,24 @@ div.circle{
     min-width: 35px;
     min-height: 35px;
     border-radius: 50%;
-    border: 2px solid var(--colorDark8);
+    border: 2px solid var(--colorDark7);
 }
 input#newTodo{
     background-color: transparent;
     font-size: 20px;
     border: none;
     outline: none;
-    color: var(--colorDark5);
+    color: var(--colorDark4);
     width: 85%;
 }
 input#newTodo::placeholder{
     font-size: 20px;
-    color: var(--colorDark6);
+    color: var(--colorDark5);
     opacity: 0.9;
 }
 div.createTodo{
     margin-bottom: 22px;
+    box-shadow: 0px 20px 35px 10px hsl(0deg 0% 0% / 22%);
 }
 div.createTodo, div.DivTodoItem{
     padding: 18px 25px 18px;
@@ -84,13 +85,16 @@ div.createTodo, div#container{
     background-color: var(--colorDark2);
     border-radius: 7px;
 }
+div#container{
+    box-shadow: 0px 35px 31px 10px hsl(0deg 0% 0% / 33%), 0px 7px 11px 2px rgb(0 0 0 / 18%);
+}
 
 div.DivTodoItem{
     display: flex;
     align-items: center;
     gap: 26px;
     color: var(--colorDark3);
-    border-bottom: 1px solid var(--colorDark8);
+    border-bottom: 1px solid var(--colorDark7);
 }
 
 div.circle.TodoItem, div.DivTodoItem p.TodoItem{
@@ -113,7 +117,7 @@ div.DivTodoItem.completed > div.circle.TodoItem{
     border: none;
 }
 div.DivTodoItem.completed > p.TodoItem{
-    color: var(--colorDark7);
+    color: var(--colorDark6);
     text-decoration: line-through;
 }
 
@@ -122,11 +126,11 @@ div.t3fs{
     font-size: 16px;
     display: flex;
     justify-content: space-around;
-    color: var(--colorDark6);
+    color: var(--colorDark5);
     font-weight: 700;
 }
 div.t3fs p{
-    color: var(--colorDark7);
+    color: var(--colorDark6);
 }
 div.menu{
     display: flex;
@@ -143,7 +147,7 @@ div.notVisible{
 }
 
 div.menu span:hover{
-    color: var(--colorDark5);
+    color: var(--colorDark4);
     cursor: pointer;
 }
 p#clearComplete:hover{
@@ -151,10 +155,13 @@ p#clearComplete:hover{
     cursor: pointer;
 }
 p.psoe{
-    margin-top: 100px;
+    margin: 50px 0 50px;
     text-align: center;
-    color: var(--colorLight5);
+    color: var(--colorDark6);
 }
 
-.attribution { font-size: 11px; text-align: center; }
-.attribution a { color: hsl(228, 45%, 44%); }
+.attribution { 
+    font-size: 16px; text-align: center;
+    color: var(--colorDark5);
+}
+.attribution a { color: var(--primaryColor1); }
