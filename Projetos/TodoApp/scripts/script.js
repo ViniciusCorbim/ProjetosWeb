@@ -116,9 +116,16 @@ inputNewTodo.addEventListener('keypress', function(e){
     let DivTodo = document.createElement('div');
     let DivCircle = document.createElement('div');
     let pTodo = document.createElement('p');
+    let imgIconCross = document.createElement('img');
     const DivContainerTodos = document.getElementById('containerTodo');
 
+    imgIconCross.src = 'images/icon-cross.svg';
+    imgIconCross.setAttribute('alt', 'icon-cross');
+    imgIconCross.setAttribute('class', 'iconCross');
+
     DivTodo.setAttribute('class', 'DivTodoItem active');
+    DivTodo.addEventListener('mouseover', IconCrossVisible);
+    DivTodo.addEventListener('mouseout', IconCrossNotVisible);
     DivCircle.setAttribute('class', 'circle TodoItem active');
     DivCircle.addEventListener('click', markTodo);
     pTodo.setAttribute('class', 'TodoItem');
@@ -135,6 +142,7 @@ inputNewTodo.addEventListener('keypress', function(e){
 
     DivTodo.appendChild(DivCircle);
     DivTodo.appendChild(pTodo);
+    DivTodo.appendChild(imgIconCross);
     DivContainerTodos.appendChild(DivTodo);
 
     inputNewTodo.value = '';
@@ -161,7 +169,7 @@ function markTodo() {
     this.parentNode.setAttribute('class', 'DivTodoItem completed');
     for(let i = 0; i < children.length; i++){
         children[i].removeEventListener('click',markTodo);
-        children[i].addEventListener('click', markOffTodo);
+        children[i].addEventListener('click',markOffTodo);
     }
     countActivesTodo ();
 
@@ -293,6 +301,18 @@ function completedVisible () {
     }
 }
 
+    function IconCrossVisible () {
+        let children = this.children;
+        for(let i=0; i < children.length; i++){
+            if(children[i].classList == 'iconCross'){
+                children[i].classList.add('Visible')
+            }
+        }
+    }
+    function IconCrossNotVisible () {
+        let Visible = document.querySelector('img.iconCross.Visible');
+        Visible.classList.remove('Visible');
+    }
 
 clearComplete.addEventListener('click', ClearCompleteTodo);
 function ClearCompleteTodo () {

@@ -134,6 +134,7 @@ div.DivTodoItem{
     gap: 26px;
     color: var(--colorDark3);
     border-bottom: 1px solid var(--colorDark7);
+    position: relative;
 }
 div.DivTodoItem.active.darkMode{
     color: var(--colorDark3);
@@ -160,6 +161,21 @@ div.circle.TodoItem, div.DivTodoItem p.TodoItem{
 p.TodoItem{
     overflow: hidden;
     line-height: 1.5em;
+    margin-right: 25px;
+}
+img.iconCross{
+    position: absolute;
+    cursor: pointer;
+    left: 93%;
+    display: none;
+}
+img.iconCross.Visible{
+    display: block;
+    opacity: 0.5;
+}
+img.iconCross.Visible:hover{
+    display: block;
+    opacity: 1;
 }
 div.DivTodoItem.active > div.circle.TodoItem:hover{
     background: linear-gradient(var(--colorDark2), var(--colorDark2)) padding-box, linear-gradient(120deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
