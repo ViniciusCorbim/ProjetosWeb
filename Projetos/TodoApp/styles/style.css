@@ -125,7 +125,7 @@ div#container.darkMode{
     box-shadow: 0px 35px 31px 10px hsl(0deg 0% 0% / 33%), 0px 7px 11px 2px rgb(0 0 0 / 18%);
 }
 div#container.lightMode{
-    box-shadow: 0px 35px 31px 10px hsl(0deg 0% 0% / 10%), 0px 7px 11px 2px rgb(0 0 0 / 5%);
+    box-shadow: 0px 35px 31px 10px hsl(0deg 0% 0% / 7%), 0px 7px 11px 2px rgb(0 0 0 / 5%);
 }
 
 div.DivTodoItem{
@@ -269,9 +269,83 @@ p.psoe{
     font-size: 16px; text-align: center;
     color: var(--colorDark5);
     margin-bottom: 50px;
+    line-height: 1.5em;
 }
 .attribution.lightMode{
     color: var(--colorLight5);
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.212);
 }
 .attribution a { color: var(--primaryColor1); }
+
+
+@media(max-width: 285px){
+    div.t3fs{
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
+@media(max-width: 375px){
+    body{
+        background-image: url(../images/bg-mobile-dark.jpg);
+        background-repeat: no-repeat;
+        background-color: var(--colorDark1);
+    }
+    body.darkMode{
+        background-image: url(../images/bg-mobile-dark.jpg);
+        background-repeat: no-repeat;
+        background-color: var(--colorDark1);
+    }
+    body.lightMode{
+        background-image: url(../images/bg-mobile-light.jpg);
+        background-repeat: no-repeat;
+        background-color: var(--colorLight2);
+    }
+    main{
+        margin: 30px auto 0;
+    }
+    div.title { margin-bottom: 20px; }
+    div.createTodo { margin-bottom: 18px; }
+}
+@media(max-width: 600px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+    body{
+        font-size: 16px;
+    }
+    main{
+        width: 80vw;
+    }
+    div#container.lightMode{
+        box-shadow: 0px 35px 31px 10px hsl(0deg 0% 0% / 7%), 0px 7px 11px 2px rgb(0 0 0 / 5%);
+    }
+    img.iconCross{
+        display: block;
+        opacity: 0.7;
+        left: 87%;
+    }
+    div.t3fs{
+        position: relative;
+        font-size: 15px;
+    }
+    div.menu{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        position: absolute;
+        top: 140%;
+        width: 80vw;
+        padding: 14px 0 14px;
+        border-radius: 7px;
+        
+        background-color: var(--colorDark2);
+        box-shadow: 0px 35px 31px 10px hsl(0deg 0% 0% / 33%);
+    }
+    div.menu.lightMode{
+        background-color: var(--colorLight1);
+        box-shadow: 0px 35px 31px 10px hsl(0deg 0% 0% / 10%);
+    }
+    p.psoe {
+        margin: 120px 0 50px;
+        text-align: center;
+        color: var(--colorDark6);
+    }
+}

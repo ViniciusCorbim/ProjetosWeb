@@ -1,5 +1,6 @@
 let mode = document.getElementById('IconMode');
 let inputNewTodo = document.getElementById('newTodo');
+const DivContainerTodos = document.getElementById('containerTodo');
 
 let spanAll = document.getElementById('spanAll');
 let spanActive = document.getElementById('spanActive');
@@ -117,11 +118,11 @@ inputNewTodo.addEventListener('keypress', function(e){
     let DivCircle = document.createElement('div');
     let pTodo = document.createElement('p');
     let imgIconCross = document.createElement('img');
-    const DivContainerTodos = document.getElementById('containerTodo');
 
     imgIconCross.src = 'images/icon-cross.svg';
     imgIconCross.setAttribute('alt', 'icon-cross');
     imgIconCross.setAttribute('class', 'iconCross');
+    imgIconCross.addEventListener('click', clearTodo);
 
     DivTodo.setAttribute('class', 'DivTodoItem active');
     DivTodo.addEventListener('mouseover', IconCrossVisible);
@@ -187,6 +188,10 @@ function markTodo() {
         case 2: completedVisible ();
             break;
     }
+    const imgIconCross = document.querySelector('img.iconCross.Visible');
+    imgIconCross.removeEventListener('click',markTodo);
+    imgIconCross.removeEventListener('click',markOffTodo);
+
     /*this.setAttribute('class', 'circle TodoItem completed');
     this.removeEventListener('click',markTodo);
     this.addEventListener('click', markOffTodo);*/
@@ -215,6 +220,11 @@ function markOffTodo () {
         case 2: completedVisible ();
             break;
     }
+
+    const imgIconCross = document.querySelector('img.iconCross.Visible');
+    imgIconCross.removeEventListener('click',markTodo);
+    imgIconCross.removeEventListener('click',markOffTodo);
+
     /*
     this.setAttribute('class', 'circle TodoItem active');
     this.removeEventListener('click',markOffTodo);
@@ -322,4 +332,11 @@ function ClearCompleteTodo () {
     for(let i = 0; i < ActiveTodo.length; i++){
         DivContainerTodos.removeChild(ActiveTodo[i]);
     }
+}
+
+function clearTodo () {
+    let parent = this.parentNode;
+    DivContainerTodos.removeChild(parent);
+
+    countActivesTodo ();
 }
