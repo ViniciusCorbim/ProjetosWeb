@@ -17,16 +17,16 @@ function loadBody () {
 mode.addEventListener('click', ChangeMode);
 function ChangeMode(){
     modeVar = !modeVar;
-    const body = document.getElementsByTagName('body')[0];
-    const container = document.getElementById('container');
-    const divCreateTodo = document.getElementsByClassName('createTodo')[0];
-    let ActivesTodo = document.querySelectorAll('div.DivTodoItem.active');
-
+    mode.classList.add('AnimationA');
     if(modeVar){
         DarkMode ()
     }else{
         LightMode ();
     }
+
+    setTimeout(function() {
+        mode.classList.remove('AnimationA');
+    }, 700);
 }
 
 function DarkMode () {
@@ -48,7 +48,7 @@ function DarkMode () {
     clearComplete.classList.remove('lightMode');
     attribution.classList.remove('lightMode');
 
-    mode.src = 'images/icon-sun.svg';
+    
     body.classList.add('darkMode');
     container.classList.add('darkMode');
     divCreateTodo.classList.add('darkMode');
@@ -64,6 +64,10 @@ function DarkMode () {
         CompletedTodo[i].classList.add("darkMode");
         CompletedTodo[i].classList.remove("lightMode")
     }
+
+    setTimeout(function() {
+        mode.src = 'images/icon-sun.svg';
+    }, 350);
 }
 function LightMode () {
     const body = document.getElementsByTagName('body')[0];
@@ -82,7 +86,7 @@ function LightMode () {
     t3fs.classList.remove('darkMode');
     clearComplete.classList.remove('darkMode');
 
-    mode.src = 'images/icon-moon.svg';
+    
     body.classList.add('lightMode');
     container.classList.add('lightMode');
     divCreateTodo.classList.add('lightMode');
@@ -102,7 +106,9 @@ function LightMode () {
         CompletedTodo[i].classList.remove("darkMode");
         /*CompletedTodo[i].setAttribute('class', 'DivTodoItem completed lightMode');*/
     }
-
+    setTimeout(function() {
+        mode.src = 'images/icon-moon.svg';
+    }, 350);
 }
 
 inputNewTodo.addEventListener('keypress', function(e){

@@ -29,6 +29,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--fontOne);
+    transition: background-color 0.3s cubic-bezier(0.69, 0.28, 1, 0.26), background 0.3s cubic-bezier(0.69, 0.28, 1, 0.26), border 0.2s cubic-bezier(0.69, 0.28, 1, 0.26), color 0.35s cubic-bezier(0.69, 0.28, 1, 0.26);
 }
 body{
     background-image: url(../images/bg-desktop-dark.jpg);
@@ -61,11 +62,28 @@ div.title{
 img#IconMode{
     cursor: pointer;
 }
+img#IconMode.AnimationA{
+    animation-name: IConMode;
+    animation-duration: 350ms;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
+}
+
+@keyframes IConMode{
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(0);
+    }
+}
+
 div.circle{
     min-width: 35px;
     min-height: 35px;
     border-radius: 50%;
     border: 2px solid var(--colorDark7);
+    transition: none;
 }
 input#newTodo{
     background-color: transparent;
@@ -215,6 +233,9 @@ div.t3fs{
     justify-content: space-around;
     color: var(--colorDark5);
     font-weight: 700;
+}
+div.t3fs span, div.t3fs p{
+    transition: none;
 }
 div.menu{
     display: flex;
