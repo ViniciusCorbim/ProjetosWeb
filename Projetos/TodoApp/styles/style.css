@@ -278,10 +278,18 @@ p.psoe{
 .attribution a { color: var(--primaryColor1); }
 
 
-@media(max-width: 285px){
+@media(hover: none){
+    img.iconCross{
+        display: block;
+}
+}
+@media(max-width: 300px){
     div.t3fs{
         flex-wrap: wrap;
         gap: 20px;
+    }
+    p.TodoItem{
+        overflow: auto;
     }
 }
 @media(max-width: 375px){
