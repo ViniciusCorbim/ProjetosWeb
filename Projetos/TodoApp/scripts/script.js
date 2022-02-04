@@ -9,9 +9,75 @@ let clearComplete = document.getElementById('clearComplete');
 let visible = 0;
 let modeVar = false;  // true - Modo Escuro   e   false - Modo Claro
 
+let ToDos = [
+    {text: 'Jog around the park 3x', active: false, id: 'item0'},
+    {text: '10 minutes meditation', active: true, id: 'item1'},
+    {text: 'Read for 1 hour', active: true, id: 'item2'},
+    {text: 'Pick up groceries', active: true, id: 'item3'},
+    {text: 'Complete Todo App on Frontend Mentor', active: true, id: 'item4'}
+]
+
 function loadBody () {
+    ToDos = getItem();
+    console.log(ToDos);
+
+    for(let i=0; i<ToDos.length; i++){
+        let DivTodo = document.createElement('div');
+        let DivCircle = document.createElement('div');
+        let pTodo = document.createElement('p');
+        let imgIconCross = document.createElement('img');
+
+        imgIconCross.src = 'images/icon-cross.svg';
+        imgIconCross.setAttribute('alt', 'icon-cross');
+        imgIconCross.setAttribute('class', 'iconCross');
+        imgIconCross.addEventListener('click', clearTodo);
+
+        DivTodo.setAttribute('class', 'DivTodoItem');
+        DivTodo.addEventListener('mouseover', IconCrossVisible);
+        DivTodo.addEventListener('mouseout', IconCrossNotVisible);
+        DivCircle.setAttribute('class', 'circle TodoItem active');
+        DivCircle.addEventListener('click', markTodo);
+        pTodo.setAttribute('class', 'TodoItem');
+        pTodo.addEventListener('click', markTodo);
+
+        pTodo.innerHTML = ToDos[i].text;
+
+        if(ToDos[i].active){
+            DivTodo.classList.add('active');
+            DivTodo.setAttribute('id', ToDos[i].id);
+        }else{
+            DivTodo.classList.add('completed');
+            DivTodo.setAttribute('id', ToDos[i].id);
+        }
+
+        DivTodo.appendChild(DivCircle);
+        DivTodo.appendChild(pTodo);
+        DivTodo.appendChild(imgIconCross);
+        DivContainerTodos.appendChild(DivTodo);
+    }
+    /*let DivTodo = document.createElement('div');
+    let DivCircle = document.createElement('div');
+    let pTodo = document.createElement('p');
+    let imgIconCross = document.createElement('img');
+
+    imgIconCross.src = 'images/icon-cross.svg';
+    imgIconCross.setAttribute('alt', 'icon-cross');
+    imgIconCross.setAttribute('class', 'iconCross');
+    imgIconCross.addEventListener('click', clearTodo);
+
+    DivTodo.setAttribute('class', 'DivTodoItem active');
+    DivTodo.addEventListener('mouseover', IconCrossVisible);
+    DivTodo.addEventListener('mouseout', IconCrossNotVisible);
+    DivCircle.setAttribute('class', 'circle TodoItem active');
+    DivCircle.addEventListener('click', markTodo);
+    pTodo.setAttribute('class', 'TodoItem');
+    pTodo.addEventListener('click', markTodo);
+    pTodo.innerHTML = inputNewTodo.value;*/
+
+
     ChangeMode();
     allVisible ();
+    countActivesTodo ();
 }
 
 mode.addEventListener('click', ChangeMode);
@@ -131,6 +197,7 @@ inputNewTodo.addEventListener('keypress', function(e){
     imgIconCross.addEventListener('click', clearTodo);
 
     DivTodo.setAttribute('class', 'DivTodoItem active');
+    DivTodo.id = 'item'+ToDos.length;
     DivTodo.addEventListener('mouseover', IconCrossVisible);
     DivTodo.addEventListener('mouseout', IconCrossNotVisible);
     DivCircle.setAttribute('class', 'circle TodoItem active');
@@ -169,11 +236,22 @@ inputNewTodo.addEventListener('keypress', function(e){
         case 2: completedVisible ();
             break;
     }
+
+    PushToDo (pTodo.innerText, true);
 });
 
 function markTodo() {
     let children = this.parentNode.children;
     this.parentNode.setAttribute('class', 'DivTodoItem completed');
+
+    console.log(this.parentNode.id);
+    for(let i=0; i<ToDos.length ; i++){
+        if(ToDos[i].id == this.parentNode.id){
+            ToDos[i].active = false;
+            setItem ();
+        }
+    }
+
     for(let i = 0; i < children.length; i++){
         children[i].removeEventListener('click',markTodo);
         children[i].addEventListener('click',markOffTodo);
@@ -204,12 +282,21 @@ function markTodo() {
 }
 
 function markOffTodo () {
+    let parent = this.parentNode;
     let children = this.parentNode.children;
     this.parentNode.setAttribute('class', 'DivTodoItem active');
     for(let i = 0; i < children.length; i++){
         children[i].removeEventListener('click',markOffTodo);
         children[i].addEventListener('click', markTodo);
     }
+
+    for(let i=0; i<ToDos.length ; i++){
+        if(ToDos[i].id == this.parentNode.id){
+            ToDos[i].active = true;
+            setItem ();
+        }
+    }
+
     countActivesTodo ();
 
     if(modeVar){
@@ -332,17 +419,96 @@ function completedVisible () {
 
 clearComplete.addEventListener('click', ClearCompleteTodo);
 function ClearCompleteTodo () {
-    let ActiveTodo = document.querySelectorAll('div.DivTodoItem.completed');
+    let completedTodo = document.querySelectorAll('div.DivTodoItem.completed');
     const DivContainerTodos = document.getElementById('containerTodo');
 
-    for(let i = 0; i < ActiveTodo.length; i++){
-        DivContainerTodos.removeChild(ActiveTodo[i]);
+    for(let i = 0; i < completedTodo.length; i++){
+        DivContainerTodos.removeChild(completedTodo[i]);
+
+        ToDos.forEach(function(valor, index){
+            if(!valor.active){
+                SliceToDo (index);
+            }
+        })
     }
 }
 
 function clearTodo () {
+    ToDos = getItem();
     let parent = this.parentNode;
     DivContainerTodos.removeChild(parent);
 
+    ToDos.forEach(function(valor, index){
+        if(valor.id == parent.id){
+            console.log('Sucesso '+valor.text +' possui o id igual a '+ parent.id+ ' = '+ valor.id);
+            SliceToDo (index);
+        }else{
+            console.log('Fracasso '+valor.text +'  não possui o id igual a '+ parent.id+ ' = '+ valor.id)
+        }
+    })
     countActivesTodo ();
 }
+
+
+
+const getItem = () => JSON.parse(localStorage.getItem('todoList')) ?? [];
+
+function setItem () {
+    ToDos.forEach(function(valor, indice){
+        valor.id = 'item'+indice;
+    });
+
+    let allTodo = document.querySelectorAll('div.DivTodoItem');
+    for(let i=0; i < ToDos.length; i++){
+        allTodo[i].id = `item${i}`;
+    }
+
+    localStorage.setItem('todoList', JSON.stringify(ToDos));
+    console.log(ToDos);
+}
+
+function PushToDo (texto, ativo) {
+    ToDos.push({text: texto, active: ativo, id: 'item'+Number(ToDos.length)});
+    setItem ();
+}
+
+function SliceToDo (index) {
+    ToDos.splice(index, 1);
+    setItem ();
+}
+
+function AtualizaToDo (texto, ativo) {
+    ToDos.push({text: texto, active: ativo, id: 'item'+Number(ToDos.length)});
+    setItem ();
+}
+
+DivContainerTodos.addEventListener('mouseover', reorganizarToDos);
+DivContainerTodos.addEventListener('mousedown', reorganizarToDos)
+function reorganizarToDos(){
+    let allTodo = document.querySelectorAll('div.DivTodoItem');
+    for(let i=0; i < allTodo.length; i++){
+        setTimeout(function() {
+            if(allTodo[i].id !== ToDos[i].id){
+                //console.log(allTodo[i].innerText);
+                //console.log(ToDos[i].text);
+    
+                let ValorToDos = ToDos[i]
+                let IndexNumber;
+    
+                
+                ToDos.forEach(function(valor, index){
+                    if(valor.id == allTodo[i].id){
+                        IndexNumber = index;
+                    }
+                })
+    
+                console.log(`Precisa trocar o ${ToDos[IndexNumber].id} pelo ${ToDos[i].id}`);
+                ToDos[i] = ToDos[IndexNumber];
+                ToDos[IndexNumber] = ValorToDos;
+    
+                console.log(ValorToDos);
+                setItem ();
+            }
+        }, 550);
+    }
+  }

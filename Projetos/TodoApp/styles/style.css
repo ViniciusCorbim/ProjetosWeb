@@ -47,7 +47,7 @@ body.lightMode{
     background-color: var(--colorLight2);
 }
 main{
-    margin: 60px auto 0;
+    margin: 70px auto 0;
     width: 550px;
 }
 div.title{
