@@ -9,6 +9,15 @@ let clearComplete = document.getElementById('clearComplete');
 let visible = 0;
 let modeVar = false;  // true - Modo Escuro   e   false - Modo Claro
 
+clearComplete.addEventListener('touchstart', touchStart);
+clearComplete.addEventListener('touchend', touchEnd);
+function touchStart() {
+      clearComplete.classList.add('touch');
+}
+function touchEnd() {
+      clearComplete.classList.remove('touch');
+}
+
 let ToDos = [
     {text: 'Jog around the park 3x', active: false, id: 'item0'},
     {text: '10 minutes meditation', active: true, id: 'item1'},
@@ -49,30 +58,13 @@ function loadBody () {
             DivTodo.setAttribute('id', ToDos[i].id);
         }
 
+        inputNewTodo.focus();
+
         DivTodo.appendChild(DivCircle);
         DivTodo.appendChild(pTodo);
         DivTodo.appendChild(imgIconCross);
         DivContainerTodos.appendChild(DivTodo);
     }
-    /*let DivTodo = document.createElement('div');
-    let DivCircle = document.createElement('div');
-    let pTodo = document.createElement('p');
-    let imgIconCross = document.createElement('img');
-
-    imgIconCross.src = 'images/icon-cross.svg';
-    imgIconCross.setAttribute('alt', 'icon-cross');
-    imgIconCross.setAttribute('class', 'iconCross');
-    imgIconCross.addEventListener('click', clearTodo);
-
-    DivTodo.setAttribute('class', 'DivTodoItem active');
-    DivTodo.addEventListener('mouseover', IconCrossVisible);
-    DivTodo.addEventListener('mouseout', IconCrossNotVisible);
-    DivCircle.setAttribute('class', 'circle TodoItem active');
-    DivCircle.addEventListener('click', markTodo);
-    pTodo.setAttribute('class', 'TodoItem');
-    pTodo.addEventListener('click', markTodo);
-    pTodo.innerHTML = inputNewTodo.value;*/
-
 
     ChangeMode();
     allVisible ();
@@ -164,12 +156,10 @@ function LightMode () {
     for(let i=0; i < ActivesTodo.length; i++){
         ActivesTodo[i].classList.add("lightMode");
         ActivesTodo[i].classList.remove("darkMode");
-        /*ActivesTodo[i].setAttribute('class', 'DivTodoItem active lightMode');*/
     }
     for(let i=0; i < CompletedTodo.length; i++){
         CompletedTodo[i].classList.add("lightMode");
         CompletedTodo[i].classList.remove("darkMode");
-        /*CompletedTodo[i].setAttribute('class', 'DivTodoItem completed lightMode');*/
     }
     setTimeout(function() {
         mode.src = 'images/icon-moon.svg';
@@ -273,10 +263,6 @@ function markTodo() {
     const imgIconCross = document.querySelector('img.iconCross.Visible');
     imgIconCross.removeEventListener('click',markTodo);
     imgIconCross.removeEventListener('click',markOffTodo);
-
-    /*this.setAttribute('class', 'circle TodoItem completed');
-    this.removeEventListener('click',markTodo);
-    this.addEventListener('click', markOffTodo);*/
 }
 
 function markOffTodo () {
@@ -314,12 +300,6 @@ function markOffTodo () {
     const imgIconCross = document.querySelector('img.iconCross.Visible');
     imgIconCross.removeEventListener('click',markTodo);
     imgIconCross.removeEventListener('click',markOffTodo);
-
-    /*
-    this.setAttribute('class', 'circle TodoItem active');
-    this.removeEventListener('click',markOffTodo);
-    this.addEventListener('click', markTodo);
-    */
 }
 
 function countActivesTodo (){

@@ -59,6 +59,9 @@ div.title{
     text-transform: uppercase;
     margin-bottom: 35px;
 }
+h1{
+    letter-spacing: 0.6em;
+}
 img#IconMode{
     cursor: pointer;
 }
@@ -277,7 +280,8 @@ div.t3fs.darkMode p{
 }
 div.t3fs.lightMode p{
     color: var(--colorLight4);
-    text-shadow: 0px 0px 0px rgb(0 0 0 / 60%);
+    text-shadow: 0px 0px 0px rgb(0 0 0);
+    font-weight: normal;
 }
 p.psoe{
     margin: 50px 0 50px;
@@ -302,39 +306,37 @@ p.psoe{
 @media(hover: none){
     img.iconCross{
         display: block;
+        opacity: 0.7;
+    }
+
+    div.DivTodoItem.active > div.circle.TodoItem:hover{
+        background: transparent !important;
+    }
+
+    div.DivTodoItem.darkMode div.circle{
+        border: 2px solid var(--colorDark7) !important;
+    }
+    div.DivTodoItem.lightMode div.circle{
+        border: 2px solid var(--colorLight3) !important;
+    }
+
+
+    p#clearComplete.darkMode:hover{
+        color: var(--colorDark6);
+    }
+    p#clearComplete.lightMode:hover{
+        color: var(--colorLight4);
+        cursor: pointer;
+    }
+
+    p#clearComplete.darkMode.touch{
+        color: var(--colorDark3);
+    }
+    p#clearComplete.lightMode.touch{
+        color: var(--colorLight5);
+    } 
 }
-}
-@media(max-width: 300px){
-    div.t3fs{
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-    p.TodoItem{
-        overflow: auto;
-    }
-}
-@media(max-width: 375px){
-    body{
-        background-image: url(../images/bg-mobile-dark.jpg);
-        background-repeat: no-repeat;
-        background-color: var(--colorDark1);
-    }
-    body.darkMode{
-        background-image: url(../images/bg-mobile-dark.jpg);
-        background-repeat: no-repeat;
-        background-color: var(--colorDark1);
-    }
-    body.lightMode{
-        background-image: url(../images/bg-mobile-light.jpg);
-        background-repeat: no-repeat;
-        background-color: var(--colorLight2);
-    }
-    main{
-        margin: 30px auto 0;
-    }
-    div.title { margin-bottom: 20px; }
-    div.createTodo { margin-bottom: 18px; }
-}
+
 @media(max-width: 600px) {
     /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
     body{
@@ -349,7 +351,7 @@ p.psoe{
     img.iconCross{
         display: block;
         opacity: 0.7;
-        left: 87%;
+        left: 92%;
     }
     div.t3fs{
         position: relative;
@@ -376,5 +378,59 @@ p.psoe{
         margin: 120px 0 50px;
         text-align: center;
         color: var(--colorDark6);
+    }
+}
+
+@media (max-width: 500px){
+    h1{
+        letter-spacing: 0.3em;
+    }
+    main{
+        width: 90vw;
+    }
+}
+
+@media(max-width: 375px){
+    body{
+        background-image: url(../images/bg-mobile-dark.jpg);
+        background-repeat: no-repeat;
+        background-color: var(--colorDark1);
+    }
+    body.darkMode{
+        background-image: url(../images/bg-mobile-dark.jpg);
+        background-repeat: no-repeat;
+        background-color: var(--colorDark1);
+    }
+    body.lightMode{
+        background-image: url(../images/bg-mobile-light.jpg);
+        background-repeat: no-repeat;
+        background-color: var(--colorLight2);
+    }
+    main{
+        margin: 30px auto 0;
+        width: 95vw;
+    }
+
+    div.menu{
+        padding: 14px 3px 14px;
+    }
+
+    div.title { margin-bottom: 20px; }
+    div.createTodo { margin-bottom: 18px; }
+}
+
+@media(max-width: 300px){
+    div.t3fs{
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    img.iconCross{
+        left: 90%;
+    }
+    p.TodoItem{
+        overflow: visible;
+    }
+    h1{
+        letter-spacing: normal;
     }
 }
