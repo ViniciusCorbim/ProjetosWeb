@@ -19,7 +19,6 @@ let ToDos = [
 
 function loadBody () {
     ToDos = getItem();
-    console.log(ToDos);
 
     for(let i=0; i<ToDos.length; i++){
         let DivTodo = document.createElement('div');
@@ -244,7 +243,6 @@ function markTodo() {
     let children = this.parentNode.children;
     this.parentNode.setAttribute('class', 'DivTodoItem completed');
 
-    console.log(this.parentNode.id);
     for(let i=0; i<ToDos.length ; i++){
         if(ToDos[i].id == this.parentNode.id){
             ToDos[i].active = false;
@@ -282,7 +280,6 @@ function markTodo() {
 }
 
 function markOffTodo () {
-    let parent = this.parentNode;
     let children = this.parentNode.children;
     this.parentNode.setAttribute('class', 'DivTodoItem active');
     for(let i = 0; i < children.length; i++){
@@ -440,10 +437,7 @@ function clearTodo () {
 
     ToDos.forEach(function(valor, index){
         if(valor.id == parent.id){
-            console.log('Sucesso '+valor.text +' possui o id igual a '+ parent.id+ ' = '+ valor.id);
             SliceToDo (index);
-        }else{
-            console.log('Fracasso '+valor.text +'  não possui o id igual a '+ parent.id+ ' = '+ valor.id)
         }
     })
     countActivesTodo ();
@@ -464,7 +458,7 @@ function setItem () {
     }
 
     localStorage.setItem('todoList', JSON.stringify(ToDos));
-    console.log(ToDos);
+    ToDos = getItem();
 }
 
 function PushToDo (texto, ativo) {
@@ -477,38 +471,31 @@ function SliceToDo (index) {
     setItem ();
 }
 
-function AtualizaToDo (texto, ativo) {
-    ToDos.push({text: texto, active: ativo, id: 'item'+Number(ToDos.length)});
-    setItem ();
-}
 
-DivContainerTodos.addEventListener('mouseover', reorganizarToDos);
-DivContainerTodos.addEventListener('mousedown', reorganizarToDos)
+DivContainerTodos.addEventListener('mouseenter', reorganizarToDos);
+DivContainerTodos.addEventListener('mouseout', reorganizarToDos);
+DivContainerTodos.addEventListener('mousemove', reorganizarToDos);
+DivContainerTodos.addEventListener('mousedown', reorganizarToDos);
+DivContainerTodos.addEventListener('mouseup', reorganizarToDos);
 function reorganizarToDos(){
     let allTodo = document.querySelectorAll('div.DivTodoItem');
+    ToDos = getItem();
     for(let i=0; i < allTodo.length; i++){
         setTimeout(function() {
-            if(allTodo[i].id !== ToDos[i].id){
+                if(allTodo.length == ToDos.length){
+                    if(allTodo[i].id !== ToDos[i].id){
                 //console.log(allTodo[i].innerText);
                 //console.log(ToDos[i].text);
-    
-                let ValorToDos = ToDos[i]
-                let IndexNumber;
-    
-                
-                ToDos.forEach(function(valor, index){
-                    if(valor.id == allTodo[i].id){
-                        IndexNumber = index;
+                console.log("Evento de Reorganizar os ToDos ativo");
+                for(let i=0; i<allTodo.length; i++){
+                    if(allTodo[i].classList.contains("active") == true){
+                        ToDos[i] = {text: allTodo[i].innerText, active: true, id: allTodo[i].id};
+                    }else{
+                        ToDos[i] = {text: allTodo[i].innerText, active: false, id: allTodo[i].id};
                     }
-                })
-    
-                console.log(`Precisa trocar o ${ToDos[IndexNumber].id} pelo ${ToDos[i].id}`);
-                ToDos[i] = ToDos[IndexNumber];
-                ToDos[IndexNumber] = ValorToDos;
-    
-                console.log(ValorToDos);
+                }
                 setItem ();
-            }
-        }, 550);
+            }}
+        }, 200);
     }
   }
