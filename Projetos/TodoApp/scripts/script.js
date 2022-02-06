@@ -66,6 +66,12 @@ function loadBody () {
         DivContainerTodos.appendChild(DivTodo);
     }
 
+    if(localStorage.getItem('DarkMode') == 'false'){
+        modeVar = false;
+    }else{
+        modeVar = true;
+    }
+
     ChangeMode();
     allVisible ();
     countActivesTodo ();
@@ -76,9 +82,11 @@ function ChangeMode(){
     modeVar = !modeVar;
     mode.classList.add('AnimationA');
     if(modeVar){
-        DarkMode ()
+        DarkMode ();
+        localStorage.setItem('DarkMode', !modeVar);
     }else{
         LightMode ();
+        localStorage.setItem('DarkMode', !modeVar);
     }
 
     setTimeout(function() {
